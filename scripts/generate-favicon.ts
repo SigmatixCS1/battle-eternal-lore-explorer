@@ -3,7 +3,9 @@ import path from 'path';
 import pngToIco from 'png-to-ico';
 
 async function main() {
-  const src = path.join(process.cwd(), 'app', 'icon.png');
+  const preferred = path.join(process.cwd(), 'public', 'flavacon.png');
+  const fallback = path.join(process.cwd(), 'app', 'icon.png');
+  const src = fs.existsSync(preferred) ? preferred : fallback;
   const dst = path.join(process.cwd(), 'public', 'favicon.ico');
 
   if (!fs.existsSync(src)) {
